@@ -1,14 +1,21 @@
 <h2>Hello</h2>
 
-<%= form_with url: '/search', method: :get do |form|%>
-    <%= form.label :flight_query, "Search for: "%>
-    <%= form.text_field :flight_query%>
-<br>
+<%= form_with model:@flight, url: '/search', method: :get do |form|%>
+   <!-- <%= form.label :flight_query, "Search for: "%>
+    <%= form.text_field :flight_query%> -->
     <%= form.label :depart_from, "Depart from:" %>
     <%= form.collection_select :depart_from, @Airports, :id, :code, prompt: "Travelling from?"%>
 <br>
     <%= form.label :arrive_at, "Arrive at:" %>
     <%= form.collection_select :arrive_at, @Airports, :id, :code, prompt: "Travelling to?" %>
     <br>
+<br>
+    <%= form.label :seats, "number of passangers: " %>
+    <%= form.select :seats, options_for_select(1..4), prompt:"No of seats"%>
+<br>
+    <%= form.label :start_date, "Traveling Date: "%>
+    <%= form.select :start_date, options_for_select(@flight_dates), prompt: "Select Flight Date" %>
+
+<br>
     <%= form.submit "Search"%>
 <%end%>

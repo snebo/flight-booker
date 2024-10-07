@@ -2,8 +2,14 @@ class FlightsController < ApplicationController
   before_action :set_flight, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @fligihts = Flight.all
+    @flights = Flight.all
     @Airports = Airport.all
+    @flight_dates = []
+    @flights.each do |flight|
+      @flight_dates << Date.parse(flight.start_date.strftime("%y/%m/%d"))
+    end
+    @flight_dates = @flight_dates.sort.uniq
+    # @flight_dates = Flight.select("DATE(start_date) as flight_date").distinct.order("flight_date ASC").map(&:flight_date)
   end
   def show
   end
@@ -21,7 +27,7 @@ class FlightsController < ApplicationController
     end
   end
 
-  def edit    
+  def edit
   end
 
   def update
@@ -44,6 +50,6 @@ class FlightsController < ApplicationController
   end
 
   def flight_parmas
-    params.require(:flight).permit(:arrive_at, :depart_from)
+    params.require(:flight).permit(:arrive_at, :depart_from, :start_date, :seats)
   end
 end
