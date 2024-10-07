@@ -19,4 +19,11 @@
 <br>
     <%= form.submit "Search"%>
 <%end%>
-<p>available flights: <%=@avail_flights%></p>
+<p>available flights: </p>
+<% if @avail_flights %>
+    <% @avail_flights.each do |flight| %>
+        <p>Flight form <%=flight.departing_airport.code%> to <%=flight.arrival_airport.code%> on <%= flight.start_date%></p>
+    <%end%>
+<% else %>
+    <p>No flights found</p>
+<%end%>
