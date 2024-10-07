@@ -2,7 +2,8 @@ class FlightsController < ApplicationController
   before_action :set_flight, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @fligiht = Flight.all
+    @fligihts = Flight.all
+    @Airports = Airport.all
   end
   def show
   end

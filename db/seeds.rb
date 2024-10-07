@@ -8,12 +8,29 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 # db/seeds.rb
+
+require 'faker'
 [ "SFO", "NYC", "TXA", "OHI", "kNY" ].each do |airport|
   Airport.find_or_create_by!(code: airport)
 end
 
-10.times do |flight|
+airports = Airport.all
+
+20.times do |flight|
+  coming = airports.sample.id
+  going = airports.sample.id
+  while coming == going 
+    going = airports.sample.id
+  end
+  flight_date = Faker::Time.between(from: DateTime.now, to: 1.year.from_now)
+  timeline = flight_date + rand(1..12).hours
+  amount = rand(2..30)
+
   Flight.find_or_create_by!(
-    depart_from: Airport.order("RAND()").limit(1).id
+    depart_from: coming,
+    arrive_at: going,
+    start_date: flight_date,
+    duration: timeline,
+    seats: amount,
   )
 end
