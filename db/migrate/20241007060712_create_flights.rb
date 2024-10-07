@@ -6,5 +6,7 @@ class CreateFlights < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+    add_foreign_key :flights, :airports, column: :depart_from
+    add_foreign_key :flights, :airports, column: :arrive_at
   end
 end
