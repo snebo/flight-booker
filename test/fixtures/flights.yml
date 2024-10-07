@@ -1,13 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  departure: one
-  arrival: one
-  start: 2024-10-06 22:11:24
-  duration: 1.5
+  depart_from: 1
+  arrive_at: 1
 
 two:
-  departure: two
-  arrival: two
-  start: 2024-10-06 22:11:24
-  duration: 1.5
+  depart_from: 1
+  arrive_at: 1
