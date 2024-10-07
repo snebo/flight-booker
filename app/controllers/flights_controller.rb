@@ -3,13 +3,21 @@ class FlightsController < ApplicationController
 
   def index
     @flights = Flight.all
-    @Airports = Airport.all
+    @airports = Airport.all
     @flight_dates = []
+    @avail_flights = []
     @flights.each do |flight|
-      @flight_dates << Date.parse(flight.start_date.strftime("%y/%m/%d"))
+      @flight_dates << flight.start_date.strftime("%Y-%m-%d")
     end
     @flight_dates = @flight_dates.sort.uniq
-    # @flight_dates = Flight.select("DATE(start_date) as flight_date").distinct.order("flight_date ASC").map(&:flight_date)
+
+    if params[:depart_from].present? && params[:arrive_at].present? && params[:start_date].present? && params[:seats].present?
+      @avail_flights = @flights.where(depart_from: params[:depart_from])
+                         .where(arrive_at: params[:arrive_at])
+                         .where("DATE(start_date) = ?", params[:start_date])
+                         .where("seats >= ?", params[:seats])
+    end
+    puts "Match: #{@avail_flights}"
   end
   def show
   end
