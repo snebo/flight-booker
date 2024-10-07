@@ -11,3 +11,9 @@
 [ "SFO", "NYC", "TXA", "OHI", "kNY" ].each do |airport|
   Airport.find_or_create_by!(code: airport)
 end
+
+10.times do |flight|
+  Flight.find_or_create_by!(
+    depart_from: Airport.order("RAND()").limit(1).id
+  )
+end
