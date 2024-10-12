@@ -1,29 +1,59 @@
 <h2>Hello</h2>
-
 <%= form_with model:@flight, url: flights_path, method: :get do |form|%>
-   <!-- <%= form.label :flight_query, "Search for: "%>
+  <!-- <%= form.label :flight_query, "Search for: "%>
     <%= form.text_field :flight_query%> -->
-    <%= form.label :depart_from, "Depart from:" %>
-    <%= form.collection_select :depart_from, @airports, :id, :code, prompt: "Travelling from?"%>
-<br>
-    <%= form.label :arrive_at, "Arrive at:" %>
-    <%= form.collection_select :arrive_at, @airports, :id, :code, prompt: "Travelling to?" %>
-    <br>
-<br>
-    <%= form.label :seats, "number of passangers: " %>
-    <%= form.select :seats, options_for_select(1..4), prompt:"No of seats"%>
-<br>
-    <%= form.label :start_date, "Traveling Date: "%>
-    <%= form.select :start_date, options_for_select(@flight_dates), prompt: "Select Flight Date" %>
-
-<br>
-    <%= form.submit "Search"%>
+  <%= form.label :depart_from, "Depart from:" %>
+  <%= form.collection_select :depart_from, @airports, :id, :code, prompt: "Travelling from?"%>
+  <br>
+  <%= form.label :arrive_at, "Arrive at:" %>
+  <%= form.collection_select :arrive_at, @airports, :id, :code, prompt: "Travelling to?" %>
+  <br>
+  <br>
+  <%= form.label :seats, "number of passangers: " %>
+  <%= form.select :seats, options_for_select(1..4), prompt:"No of seats"%>
+  <br>
+  <%= form.label :start_date, "Traveling Date: "%>
+  <%= form.select :start_date, options_for_select(@flight_dates), prompt: "Select Flight Date" %>
+  <br>
+  <%= form.submit "Search"%>
 <%end%>
-<p>available flights: </p>
-<% if @avail_flights %>
-    <% @avail_flights.each do |flight| %>
-        <p>Flight form <%=flight.departing_airport.code%> to <%=flight.arrival_airport.code%> on <%= flight.start_date%></p>
-    <%end%>
+<h4>available flights: </h4>
+<!--<% if @avail_flights %>
+  <% @avail_flights.each do |flight| %>
+    <p>Flight form <%=flight.departing_airport.code%> to <%=flight.arrival_airport.code%> on <%= flight.start_date%></p>
+  <%end%>
 <% else %>
-    <p>No flights found</p>
+  <p>No flights found</p>
+<%end%> -->
+<%= form_with url:new_booking_path, method: :get do |form|%>
+  <%if @avail_flights != [] %>
+    <table>
+      <tr>
+        <th>Choose</th>
+        <th>Flight</th>
+        <th>Date</th>
+        <th>avail_seats</th>
+      </tr>
+      <% @avail_flights.each do |flight| %>
+        <tr>
+          <td>
+            <%= form.radio_button:flight_id, flight.id %>
+          </td>
+          <td>
+            Flight from: <%= flight.departing_airport.code%> to <%= flight.arrival_airport.code%>
+          </td>
+          <td>
+            <%= flight.start_date.strftime('%Y-%m-%d')%>
+          </td>
+          <td>
+            <%= flight.seats%> available seats
+          </td>
+        </tr>
+      <%end%>
+    </table>
+    
+    <%= form.submit "select flight" %>
+  <%else%>
+    <p>No flights found matching your choices</p>
+  <%end%>
 <%end%>

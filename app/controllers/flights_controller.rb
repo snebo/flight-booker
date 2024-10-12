@@ -2,22 +2,21 @@ class FlightsController < ApplicationController
   before_action :set_flight, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @flights = Flight.all
+    # Fetch airports and available dates
     @airports = Airport.all
-    @flight_dates = []
-    @avail_flights = []
-    @flights.each do |flight|
-      @flight_dates << flight.start_date.strftime("%Y-%m-%d")
-    end
-    @flight_dates = @flight_dates.sort.uniq
+    @flight_dates = Flight.pluck(:start_date).map { |date| date.strftime("%Y-%m-%d") }.sort.uniq
 
+    # Filter available flights based on user input
     if params[:depart_from].present? && params[:arrive_at].present? && params[:start_date].present? && params[:seats].present?
-      @avail_flights = @flights.where(depart_from: params[:depart_from])
-                         .where(arrive_at: params[:arrive_at])
-                         .where("DATE(start_date) = ?", params[:start_date])
-                         .where("seats >= ?", params[:seats])
+      @avail_flights = Flight.where(depart_from: params[:depart_from])
+                             .where(arrive_at: params[:arrive_at])
+                             .where("DATE(start_date) = ?", params[:start_date])
+                             .where("seats >= ?", params[:seats])
+    else
+      @avail_flights = [] # Or handle cases where filters aren't provided
     end
-    puts "Match: #{@avail_flights}"
+
+    puts "Match: #{@avail_flights.map(&:id)}"
   end
   def show
   end
