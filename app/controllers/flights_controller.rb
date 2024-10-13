@@ -1,10 +1,14 @@
 class FlightsController < ApplicationController
-  before_action :set_flight, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
   def index
     # Fetch airports and available dates
     @airports = Airport.all
     @flight_dates = Flight.pluck(:start_date).map { |date| date.strftime("%Y-%m-%d") }.sort.uniq
+
+    # Initialize the instance variables
+    @avail_flights = []
+    @possible_flights = []
 
     # Filter available flights based on user input
     if params[:depart_from].present? && params[:arrive_at].present? && params[:start_date].present? && params[:seats].present?
@@ -12,24 +16,24 @@ class FlightsController < ApplicationController
                              .where(arrive_at: params[:arrive_at])
                              .where("DATE(start_date) = ?", params[:start_date])
                              .where("seats >= ?", params[:seats])
-    else
-      @avail_flights = [] # Or handle cases where filters aren't provided
+
       @possible_flights = Flight.where(depart_from: params[:depart_from])
-                           .where(arrive_at: params[:arrive_at])
-                           .seats("seats >= ?", params[:seats])
+                                 .where(arrive_at: params[:arrive_at])
+                                 .where("seats >= ?", params[:seats])
     end
 
     puts "Match: #{@avail_flights.map(&:id)}"
   end
+
   def show
   end
 
-  def def(new)
+  def new
     @flight = Flight.new
   end
 
   def create
-    @flight = Flight.new(flight_parmas)
+    @flight = Flight.new(flight_params)
     if @flight.save
       redirect_to @flight, notice: "Flight was saved successfully"
     else
@@ -41,7 +45,7 @@ class FlightsController < ApplicationController
   end
 
   def update
-    if @flight.update(flight_parmas)
+    if @flight.update(flight_params)
       redirect_to @flight, notice: "Flight info was updated"
     else
       render :edit
@@ -59,7 +63,7 @@ class FlightsController < ApplicationController
     @flight = Flight.find(params[:id])
   end
 
-  def flight_parmas
+  def flight_params
     params.require(:flight).permit(:arrive_at, :depart_from, :start_date, :seats)
   end
 end

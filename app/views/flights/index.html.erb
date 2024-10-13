@@ -47,34 +47,35 @@
     <%= hidden_field_tag :seats, params[:seats] %>
     <%= form.submit "select flight" %>
   <%else%>
-    <h3>No flights found on selected day</h3>
-    <h5>Other options
-    <table>
-      <tr>
-        <th>Choose</th>
-        <th>Flight</th>
-        <th>Date</th>
-        <th>avail_seats</th>
-      </tr>
-      <% @possible_flights.each do |flight| %>
+    <% if @possible_flights != [] %>
+      <h4>No flights found on selected day</h4>
+      <h5>Other options</h5>
+      <table>
         <tr>
-          <td>
-            <%= form.radio_button:flight_id, flight.id %>
-          </td>
-          <td>
-            <%= flight.departing_airport.code%> to <%= flight.arrival_airport.code%>
-          </td>
-          <td>
-            <%= flight.start_date.strftime('%Y-%m-%d')%>
-          </td>
-          <td>
-            <%= flight.seats%> available seats
-          </td>
+          <th>Choose</th>
+          <th>Flight</th>
+          <th>Date</th>
+          <th>avail_seats</th>
         </tr>
-      <%end%>
-    </table>
-    <%= hidden_field_tag :seats, params[:seats] %>
-    <%= form.submit "select flight" %>
-
+        <% @possible_flights.each do |flight| %>
+          <tr>
+            <td>
+              <%= form.radio_button:flight_id, flight.id %>
+            </td>
+            <td>
+              <%= flight.departing_airport.code%> to <%= flight.arrival_airport.code%>
+            </td>
+            <td>
+              <%= flight.start_date.strftime('%Y-%m-%d')%>
+            </td>
+            <td>
+              <%= flight.seats%> available seats
+            </td>
+          </tr>
+        <%end%>
+      </table>
+      <%= hidden_field_tag :seats, params[:seats] %>
+      <%= form.submit "select flight" %>
+    <%end%>
   <%end%>
 <%end%>

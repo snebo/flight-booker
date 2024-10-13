@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     if @booking.save
       flash[:success] = "Object successfully created"
-      @booking.flight.update(seats: @booking.flight.seats - @booking.passengers.count)
+      @booking.flight.update(seats: @booking.flight.seats - @booking.passangers.count)
       redirect_to @booking
     else
       flash[:error] = "Something went wrong"
