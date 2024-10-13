@@ -1,19 +1,25 @@
-<h2>Booking Confirmation</h2>
+<div class="booking-confirmation-section">
+  <h2 class="booking-confirmation-title">Booking Confirmation</h2>
 
-<p>Thank you for your booking!</p>
+  <p class="booking-confirmation-message">Thank you for your booking!</p>
 
-<p>Flight from: <%= @booking.flight.departing_airport.code %> to <%= @booking.flight.arrival_airport.code %></p>
-<p>Flight date: <%= @booking.flight.start_date.strftime('%Y-%m-%d') %></p>
-<p>Seats booked: <%= @booking.seats %></p>
+  <div class="flight-summary-section">
+    <p><strong>Flight from:</strong> <%= @booking.flight.departing_airport.code %> to <%= @booking.flight.arrival_airport.code %></p>
+    <p><strong>Flight date:</strong> <%= @booking.flight.start_date.strftime('%Y-%m-%d') %></p>
+    <p><strong>Seats booked:</strong> <%= @booking.seats %></p>
+  </div>
 
-<h3>Passengers:</h3>
-<ul>
-  <% @booking.passangers.each do |passenger| %>
-    <li>
-      <strong>Name:</strong> <%= passenger.name %> | 
-      <strong>Email:</strong> <%= passenger.email %>
-    </li>
-  <% end %>
-</ul>
+  <h3 class="passengers-summary-title">Passengers:</h3>
+  <ul class="passengers-summary-list">
+    <% @booking.passangers.each do |passenger| %>
+      <li class="passenger-summary-item">
+        <strong>Name:</strong> <%= passenger.name %> | 
+        <strong>Email:</strong> <%= passenger.email %>
+      </li>
+    <% end %>
+  </ul>
 
-<%= link_to "Back to Flights", flights_path %>
+  <div class="booking-actions">
+    <%= link_to "Back to Flights", flights_path, class: "back-to-flights-btn" %>
+  </div>
+</div>

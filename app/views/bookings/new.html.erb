@@ -1,23 +1,34 @@
 <div class="booking-information-container">
-  <%= form_with model: @booking, url: bookings_path, method: :post do |form| %>
-    <h3>Flight information</h3>
-    <p>Flight from: <%= @flight.departing_airport.code%></p>
-    <p>Flight to: <%= @flight.arrival_airport.code%></p>
-    <p>Date: <%= @flight.start_date.strftime('%Y-%m-%d') %></p>
-    <%= form.hidden_field :flight_id, value:@flight.id %>
-    <%= form.hidden_field :seats, value:@seats %>
-    <h3>Passanger Information</h3>
+  <%= form_with model: @booking, url: bookings_path, method: :post, class: 'booking-form' do |form| %>
+    <h3 class="section-title">Flight Information</h3>
+    <div class="flight-details">
+      <p><strong>Flight from:</strong> <%= @flight.departing_airport.code %></p>
+      <p><strong>Flight to:</strong> <%= @flight.arrival_airport.code %></p>
+      <p><strong>Date:</strong> <%= @flight.start_date.strftime('%Y-%m-%d') %></p>
+    </div>
+    
+    <%= form.hidden_field :flight_id, value: @flight.id %>
+    <%= form.hidden_field :seats, value: @seats %>
+    
+    <h3 class="section-title">Passenger Information</h3>
     <% @seats.times do |index| %>
-      <div>
-        <h4>Passanger <%= index+1 %></h4>
+      <div class="passenger-info">
+        <h4>Passenger <%= index + 1 %></h4>
         <%= form.fields_for :passangers, @booking.passangers.build do |passanger_form| %>
-          <%= passanger_form.label :name, "Name" %>
-          <%= passanger_form.text_field :name %>
-          <%= passanger_form.label :email, "Email" %>
-          <%= passanger_form.email_field :email %>
-        <%end%>
+          <div class="form-group">
+            <%= passanger_form.label :name, "Name", class: 'label' %>
+            <%= passanger_form.text_field :name, class: 'input-field' %>
+          </div>
+          <div class="form-group">
+            <%= passanger_form.label :email, "Email", class: 'label' %>
+            <%= passanger_form.email_field :email, class: 'input-field' %>
+          </div>
+        <% end %>
       </div>
-    <%end%>
-    <%= form.submit "Confirm Booking" %>
-  <%end%>
+    <% end %>
+    
+    <div class="form-actions">
+      <%= form.submit "Confirm Booking", class: 'btn-booking btn-confirm' %>
+    </div>
+  <% end %>
 </div>
