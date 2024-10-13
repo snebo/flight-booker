@@ -2,8 +2,15 @@
     margin: 0;
     padding:0;
     box-sizing: border-box;
-    /* border: 1px solid #ccc; */
-    /* background-color: rgb(235, 235, 243); */
+}
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+.main-content{
+  flex-grow: 1;
 }
 nav{
     background-color: #3a9bac;
@@ -60,9 +67,10 @@ li,a{
     left: 10%;
     width: 80%; /* Slightly smaller than the image */
     height: 80%; /* Slightly smaller than the image */
-    background-image: url('/assets/sky_backdrop.jpg'); /* Your backdrop image */
-    background-size: cover;
-    background-position: contain;
+    background-image: url('/assets/backdrop2.jpg'); /* Your backdrop image */
+    background-size: fill;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 999px; /* Pill-shaped backdrop */
     z-index: -1; /* Places the backdrop behind the image */
   }
@@ -168,9 +176,9 @@ li,a{
 footer{
     background-color: #29a1b6;
     color:white;
-    margin-top: 40px;
+    margin-top: auto;
     display: flex;
-    padding:30px 50px;
+    padding:15px 50px;
     justify-content: space-between;
     flex-direction: row-reverse;
 }

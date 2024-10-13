@@ -1,24 +1,23 @@
-<%= form_with model: @booking, url: bookings_path, method: :post do |form| %>
+<div class="booking-information-container">
+  <%= form_with model: @booking, url: bookings_path, method: :post do |form| %>
     <h3>Flight information</h3>
     <p>Flight from: <%= @flight.departing_airport.code%></p>
     <p>Flight to: <%= @flight.arrival_airport.code%></p>
     <p>Date: <%= @flight.start_date.strftime('%Y-%m-%d') %></p>
-
     <%= form.hidden_field :flight_id, value:@flight.id %>
     <%= form.hidden_field :seats, value:@seats %>
-
     <h3>Passanger Information</h3>
     <% @seats.times do |index| %>
-        <div>
-            <h4>Passanger <%= index+1 %></h4>
-            <%= form.fields_for :passangers, @booking.passangers.build do |passanger_form| %>
-                <%= passanger_form.label :name, "Name" %>
-                <%= passanger_form.text_field :name %>
-
-                <%= passanger_form.label :email, "Email" %>
-                <%= passanger_form.email_field :email %>
-            <%end%>
-        </div>
+      <div>
+        <h4>Passanger <%= index+1 %></h4>
+        <%= form.fields_for :passangers, @booking.passangers.build do |passanger_form| %>
+          <%= passanger_form.label :name, "Name" %>
+          <%= passanger_form.text_field :name %>
+          <%= passanger_form.label :email, "Email" %>
+          <%= passanger_form.email_field :email %>
+        <%end%>
+      </div>
     <%end%>
     <%= form.submit "Confirm Booking" %>
-<%end%>
+  <%end%>
+</div>
