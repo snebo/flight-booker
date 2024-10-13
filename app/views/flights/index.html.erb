@@ -52,82 +52,80 @@
       Search
     <% end %>
   </section>
-  <!-- <%= form.label :flight_query, "Search for: "%>
-    <%= form.text_field :flight_query%> -->
-  <%= form.label :depart_from, "Depart from:" %>
-  <%= form.collection_select :depart_from, @airports, :id, :code, prompt: "Travelling from?", selected:params[:depart_from]%>
-  <br>
-  <%= form.label :arrive_at, "Arrive at:" %>
-  <%= form.collection_select :arrive_at, @airports, :id, :code, prompt: "Travelling to?", selected:params[:arrive_at] %>
-  <br>
-  <br>
-  <%= form.label :seats, "number of passangers: " %>
-  <%= form.select :seats, options_for_select(1..4, selected:params[:seats]), prompt:"No of seats"%>
-  <br>
-  <%= form.label :start_date, "Traveling Date: "%>
-  <%= form.select :start_date, options_for_select(@flight_dates, selected:params[:start_date]), prompt: "Select Flight Date" %>
-  <br>
-  <%= form.submit "Search"%>
 <%end%>
-<h4>available flights: </h4>
 <%= form_with url:new_booking_path, method: :get do |form|%>
   <%if @avail_flights != [] %>
-    <table>
-      <tr>
-        <th>Choose</th>
-        <th>Flight</th>
-        <th>Date</th>
-        <th>avail_seats</th>
-      </tr>
+    <section class="search-results">
       <% @avail_flights.each do |flight| %>
-        <tr>
-          <td>
+        <div class="flight-container"> <!--idnividual flight-->
+          <div class="flight">
             <%= form.radio_button:flight_id, flight.id %>
-          </td>
-          <td>
-            <%= flight.departing_airport.code%> to <%= flight.arrival_airport.code%>
-          </td>
-          <td>
-            <%= flight.start_date.strftime('%Y-%m-%d')%>
-          </td>
-          <td>
-            <%= flight.seats%> available seats
-          </td>
-        </tr>
+            <div class="flight-info">
+              <p class="sub-title">flight from</p>
+              <p class="detail-info"><%= flight.departing_airport.code%></p>
+            </div>
+            <div class="flight-info">
+              <p class="sub-title">flight to</p>
+              <p class="detail-info"><%= flight.arrival_airport.code%></p>
+            </div>
+            <div class="flight-info">
+              <p class="sub-title">Date</p>
+              <p class="detail-info"><%= flight.start_date.strftime('%d %B %Y') %></p>
+            </div>
+            <div class="flight-info">
+              <p class="sub-title">Duration</p>
+              <p class="detail-info">1hr</p>
+            </div>
+            <div class="flight-info">
+              <p class="sub-title">available seats</p>
+              <p class="detail-info"><%= flight.seats%></p>
+            </div>
+          </div>
+        </div>
       <%end%>
-    </table>
+    </section>
     <%= hidden_field_tag :seats, params[:seats] %>
-    <%= form.submit "select flight" %>
+    <%= form.submit "select flight", class: "select-flight btn" %>
   <%else%>
     <% if @possible_flights != [] %>
-      <h4>No flights found on selected day</h4>
-      <h5>Other options</h5>
-      <table>
-        <tr>
-          <th>Choose</th>
-          <th>Flight</th>
-          <th>Date</th>
-          <th>avail_seats</th>
-        </tr>
+      <h4 style="text-align:center">No flights found on selected day</h4>
+      <h5 style="text-align:center">Other Dates</h5>
+      <section class="search-results">
         <% @possible_flights.each do |flight| %>
-          <tr>
-            <td>
+          <div class="flight-container"> <!--idnividual flight-->
+            <div class="flight">
               <%= form.radio_button:flight_id, flight.id %>
-            </td>
-            <td>
-              <%= flight.departing_airport.code%> to <%= flight.arrival_airport.code%>
-            </td>
-            <td>
-              <%= flight.start_date.strftime('%Y-%m-%d')%>
-            </td>
-            <td>
-              <%= flight.seats%> available seats
-            </td>
-          </tr>
+              <div class="flight-info">
+                <p class="sub-title">flight from</p>
+                <p class="detail-info"><%= flight.departing_airport.code%></p>
+              </div>
+              <div class="flight-info">
+                <p class="sub-title">flight to</p>
+                <p class="detail-info"><%= flight.arrival_airport.code%></p>
+              </div>
+              <div class="flight-info">
+                <p class="sub-title">Date</p>
+                <p class="detail-info"><%= flight.start_date.strftime('%d %B %Y') %></p>
+              </div>
+              <div class="flight-info">
+                <p class="sub-title">Duration</p>
+                <p class="detail-info">1hr</p>
+              </div>
+              <div class="flight-info">
+                <p class="sub-title">available seats</p>
+                <p class="detail-info"><%= flight.seats%></p>
+              </div>
+            </div>
+          </div>
         <%end%>
-      </table>
+      </section>
       <%= hidden_field_tag :seats, params[:seats] %>
-      <%= form.submit "select flight" %>
+      <%= form.submit "select flight", class: "select-flight btn" %>
     <%end%>
   <%end%>
 <%end%>
+<section class="random-words">
+  <h5 style="text-transform: uppercase;font-size: 1em;text-align: center;">Travel support</h5>
+  <h2 style="text-align: center; font-size: 2.5em;">Plan your travel with confidence</h2>
+  <p style="color: grey;text-align: center;">Find help with your booking and travel plans and see what to expect along the journey</p>
+</section>
