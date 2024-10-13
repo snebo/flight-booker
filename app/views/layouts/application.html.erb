@@ -29,18 +29,19 @@
     <%= yield %>
     <footer>
       <div class="contact-copyright">
-        <p>Made with <span>love</span>by &copy; Nebo_Stefano</p>
+        <p>Made with <strong> love </strong>by &copy; Nebo_Stefano</p>
       </div>
-      <img style="width: 100px; height: 100px;" src="#" alt="the odin porject" class="TOP-logo">
+      <%= image_tag 'theOP', alt: 'the odin project logo', class:"TOP-logo", height:"100px"%>
+      <!--<img style="width: 100px; height: 100px;" src="#" alt="the odin porject" class="TOP-logo">-->
       <div class="contact-links">
         <div class="project-title">
-          <img src="#" alt="" class="flight-logo" style="width: 40px;height:40px;">
+          <%= image_tag 'plane', alt: 'plane', class: 'flight-logo', width:'40px', height:'40px' %>
           <h3>Flight Booker</h3>
         </div>
-        <a href=""><img src="#" alt="twitter" class="contact-icon"></a>
-        <a href=""><img src="#" alt="twitter" class="contact-icon"></a>
-        <a href=""><img src="#" alt="twitter" class="contact-icon"></a>
-        <a href=""><img src="#" alt="twitter" class="contact-icon"></a>
+        <a href=""><%= image_tag 'twitter', alt: 'twitter', class:"contact-icon" %></a>
+        <a href=""><%= image_tag 'whatsapp', alt: 'whatsapp', class:"contact-icon" %></a>
+        <a href=""><%= image_tag 'mail', alt: 'email', class:"contact-icon" %></a>
+        <a href=""><%= image_tag 'linkedin', alt: 'linkedin', class:"contact-icon" %></a>
       </div>
     </footer>
   </body>

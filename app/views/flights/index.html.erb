@@ -1,7 +1,12 @@
 <div class="welcome-screen">
-  <h1 style="text-transform: capitalize;">find and book</br>a great experience</h1>
-<img src="#" alt="" class="aircraft-image"><!--would have before action for aircraft background'-->
+  <h1 style="text-transform: capitalize; padding-bottom:40px;">
+    find and book</br>a great experience
+  </h1>
+  <div class="aircraft-wrapper">
+    <%= image_tag 'welcom-image', alt: 'welcome-image', class: 'aircraft-image' %>
+  </div>
 </div>
+
 <%= form_with model:@flight, url: flights_path, method: :get do |form|%>
   <section class="find-flights">
     <div class="flight-class">
@@ -9,10 +14,10 @@
         <p>Economy Class</p>
       </div>
       <div class="f-class">
-        <p>Economy Class</p>
+        <p>Business Class</p>
       </div>
-      <div class="f-class">
-        <p>Economy Class</p>
+      <div class="f-class selected">
+        <p>First Class</p>
       </div>
     </div>
     <div class="search-details">
@@ -88,8 +93,8 @@
     <%= form.submit "select flight", class: "select-flight btn" %>
   <%else%>
     <% if @possible_flights != [] %>
-      <h4 style="text-align:center">No flights found on selected day</h4>
-      <h5 style="text-align:center">Other Dates</h5>
+      <h4 style="text-align:center;margin-top:40px;padding:20px 0;font-size:1.5em;">No flights found on selected day!</h4>
+      <h5 style="text-align:center;font-size:1.3em">Other Dates</h5>
       <section class="search-results">
         <% @possible_flights.each do |flight| %>
           <div class="flight-container"> <!--idnividual flight-->
@@ -118,9 +123,9 @@
             </div>
           </div>
         <%end%>
+        <%= hidden_field_tag :seats, params[:seats] %>
+        <%= form.submit "select flight", class: "select-flight btn" %>
       </section>
-      <%= hidden_field_tag :seats, params[:seats] %>
-      <%= form.submit "select flight", class: "select-flight btn" %>
     <%end%>
   <%end%>
 <%end%>
