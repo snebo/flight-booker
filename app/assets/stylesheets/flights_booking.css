@@ -3,7 +3,7 @@
     padding:0;
     box-sizing: border-box;
     border: 1px solid #ccc;
-    background-color: rgb(235, 235, 243);
+    /* background-color: rgb(235, 235, 243); */
 }
 nav{
     padding: 12px 50px;
@@ -66,7 +66,8 @@ li,a{
 }
 .flight-detail{
     display: flex;
-    gap:10px;
+    gap:4px;
+    align-items: center;
 }
 .find-flights{
     display: flex;
@@ -75,8 +76,8 @@ li,a{
     gap: 30px;
 }
 .detail-icon{
-    width:70px;
-    height:70px;
+    width:40px;
+    height:40px;
 }
 .sub-details{
     padding:10px;

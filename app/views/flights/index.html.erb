@@ -1,55 +1,57 @@
 <div class="welcome-screen">
-        <h1 style="text-transform: capitalize;">find and book</br>a great experience</h1>
-        <img src="#" alt="" class="aircraft-image"><!--would have before action for aircraft background'-->
+  <h1 style="text-transform: capitalize;">find and book</br>a great experience</h1>
+<img src="#" alt="" class="aircraft-image"><!--would have before action for aircraft background'-->
 </div>
-
-
-
 <%= form_with model:@flight, url: flights_path, method: :get do |form|%>
-
-<section class="find-flights">
-        <div class="flight-class">
-            <div class="f-class"><p>Economy Class</p></div>
-            <div class="f-class"><p>Economy Class</p></div>
-            <div class="f-class"><p>Economy Class</p></div>
-        </div>
-        <div class="search-details">
-            <div class="flight-detail">
-                <div class="detail-icon"><img src="#" alt=""></div>
-                <div class="sub-details">
-                    <%= form.label :depart_from, "Depart from:",class:"details-helper"%>
-                    <%= form.collection_select :depart_from, @airports, :id, :code, {prompt: "Travelling from?", selected:params[:depart_from]},
+  <section class="find-flights">
+    <div class="flight-class">
+      <div class="f-class">
+        <p>Economy Class</p>
+      </div>
+      <div class="f-class">
+        <p>Economy Class</p>
+      </div>
+      <div class="f-class">
+        <p>Economy Class</p>
+      </div>
+    </div>
+    <div class="search-details">
+      <div class="flight-detail">
+        <%= image_tag 'from', alt: 'from' %>
+        <div class="sub-details">
+          <%= form.label :depart_from, "Depart from:",class:"details-helper"%>
+          <%= form.collection_select :depart_from, @airports, :id, :code, {prompt: "Travelling from?", selected:params[:depart_from]},
                     {class: "custom-dropdown"}%>
-                </div>
-            </div>
-            <div class="flight-detail">
-                <div class="detail-icon"><img src="#" alt=""></div>
-                <div class="sub-details">
-                    <!--select-deropdown-->
-                    <p style="border-top: 1px solid blueviolet;" class="details-helper">Where are you going?</p>
-                </div>
-            </div>
-            <div class="flight-detail">
-                <div class="detail-icon"><img src="#" alt=""></div>
-                <div class="sub-details">
-                    <!--select-deropdown-->
-                    <p style="border-top: 1px solid blueviolet;" class="details-helper">Where are you going?</p>
-                </div>
-            </div>
-            <div class="flight-detail">
-                <div class="detail-icon"><img src="#" alt=""></div>
-                <div class="sub-details">
-                    <!--select-deropdown-->
-                    <!--chage p tag to label-->
-                    <p style="border-top: 1px solid blueviolet;" class="details-helper">Where are you going?</p>
-                </div>
-            </div>
         </div>
-        <button class="search-btn btn" type="submit">
-            <img src="#" alt="" style="width: 25px;height: 25px;">
-            Search</button>
-    </section>
-
+      </div>
+      <div class="flight-detail">
+        <%= image_tag "to", alt: 'destination', class:"detail-icon" %>
+        <div class="sub-details">
+          <%= form.label :arrive_at, "Arrive at:", class:"details-helper" %>
+          <%= form.collection_select :arrive_at, @airports, :id, :code, {prompt: "Travelling to?", selected:params[:arrive_at]},
+                     {class: "custom-dropdown"} %>
+        </div>
+      </div>
+      <div class="flight-detail">
+        <%= image_tag 'person', alt: 'person', class:'detail-icon'%>
+        <div class="sub-details">
+          <%= form.label :seats, "number of passangers:", class:"details-helper" %>
+          <%= form.select :seats, options_for_select(1..4, selected:params[:seats]),{ prompt:"No of seats"}, {class:"custom-dropdown"} %>
+        </div>
+      </div>
+      <div class="flight-detail">
+        <%= image_tag 'date', alt: 'date', class:"detail-icon" %>
+        <div class="sub-details">
+          <%= form.label :start_date, "Traveling Date:", class:"details-helper"%>
+          <%= form.select :start_date, options_for_select(@flight_dates, selected:params[:start_date]),{ prompt: "Select Flight Date"}, {class:"custom-dropdown"} %>
+        </div>
+      </div>
+    </div>
+    <%= form.button(type: 'submit', class: 'search-btn btn') do %>
+      <img src="<%= asset_path 'search.png' %>" alt="Search" style="width: 25px; height: 25px;">
+      Search
+    <% end %>
+  </section>
   <!-- <%= form.label :flight_query, "Search for: "%>
     <%= form.text_field :flight_query%> -->
   <%= form.label :depart_from, "Depart from:" %>
@@ -67,8 +69,6 @@
   <br>
   <%= form.submit "Search"%>
 <%end%>
-
-
 <h4>available flights: </h4>
 <%= form_with url:new_booking_path, method: :get do |form|%>
   <%if @avail_flights != [] %>
