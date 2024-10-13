@@ -14,6 +14,9 @@ class FlightsController < ApplicationController
                              .where("seats >= ?", params[:seats])
     else
       @avail_flights = [] # Or handle cases where filters aren't provided
+      @possible_flights = Flight.where(depart_from: params[:depart_from])
+                           .where(arrive_at: params[:arrive_at])
+                           .seats("seats >= ?", params[:seats])
     end
 
     puts "Match: #{@avail_flights.map(&:id)}"
