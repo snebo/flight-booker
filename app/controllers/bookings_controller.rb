@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     else
       flash[:error] = "Something went wrong"
       puts "error #{:error}"
-      render 'new'
+      render "new"
     end
   end
   def show
