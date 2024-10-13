@@ -1,5 +1,5 @@
 class FlightsController < ApplicationController
-  before_action :set_flight, only: [:show, :edit, :update, :destroy]
+  before_action :set_flight, only: [ :show, :edit, :update, :destroy ]
 
   def index
     # Fetch airports and available dates
