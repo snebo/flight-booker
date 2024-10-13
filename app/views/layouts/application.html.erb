@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Flight Booker" %></title>
+    <title><%= content_for(:title) || "Flight Booker: Rails application to manage flight bookings" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -10,14 +10,26 @@
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="/paper_plane.png" type="image/png">
+    <!--<link rel="icon" href="/icon.svg" type="image/svg+xml">-->
     <link rel="apple-touch-icon" href="/icon.png">
+    <%= favicon_link_tag 'paper_plane.png', type: 'image/png' %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+     <%= stylesheet_link_tag 'flights_booking', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <nav>
+        <h3>Flight  Booker</h3>
+        <ul class="nav-links">
+            <li><a href="#">Github</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">LindkedIn</a></li>
+        </ul>
+        <button class="btn contact-snebo">Contact</button>
+    </nav>
     <%= yield %>
   </body>
 </html>

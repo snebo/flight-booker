@@ -1,0 +1,197 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    background-color: rgb(235, 235, 243);
+}
+nav{
+    padding: 12px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav>h3{cursor:default;}
+.nav-links{
+    display: flex;
+    gap: 15px;
+}
+li,a{
+    list-style: none;
+    text-decoration: none;
+    color: grey;
+    padding: 5px;
+}
+.btn{
+    width: 120px;
+    padding: 10px;
+    cursor: pointer;
+    border:none;
+    border-radius: 25px;
+    background-color: rgb(41, 130, 202);
+    color: white;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.welcome-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.6em;
+    line-height: 2.7em;
+    margin:70px
+}
+.aircraft-image{
+    min-width: 700px;
+    height: 400px;
+}
+.flight-class{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.f-class{
+    padding:10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.search-details{
+    padding: 30px 50px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.flight-detail{
+    display: flex;
+    gap:10px;
+}
+.find-flights{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.detail-icon{
+    width:70px;
+    height:70px;
+}
+.sub-details{
+    padding:10px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+.details-helper{color: grey}
+.custom-dropdown {
+    width: 100%; /* Adjust the width to fit the box */
+    padding: 12px; /* Increase padding for a larger box */
+    font-size: 15px; /* Increase the text size */
+    border-radius: 5px; /* Add rounded corners */
+    border: 1px solid #ccc; /* Add a border */
+    background-color: #f9f9f9; /* Light background color */
+  }
+  
+  .custom-dropdown:hover {
+    border-color: #888; /* Change border color on hover */
+  }
+  
+  .custom-dropdown:focus {
+    border-color: #007bff; /* Add focus state styling (blue border on focus) */
+    outline: none; /* Remove default focus outline */
+  }
+  .custom-dropdown {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .custom-dropdown:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+   
+.search-btn{
+    display: flex;
+    gap:5px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.random-words, .random-words>*{
+    margin: 15px 0;;
+}
+footer{
+    margin-top: 40px;
+    display: flex;
+    padding:40px 50px;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.project-title{
+    display: flex;
+    gap:10px;
+    align-items: end;
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-block; /* Ensures that it behaves like an inline image */
+    object-fit: cover; /* This will ensure the image maintains its aspect ratio */
+  }
+  .contact-copyright{
+    display: flex;
+    align-items: center;
+  }
+  .search-results{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 70px 0;
+  }
+
+  .flight-container{
+    /* margin-top:40px; */
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    width:80%;
+    padding:20px 50px;
+    /* box-shadow: 0px 0px 45px 2px rgba(0, 0, 0, 0.144); */
+  }
+  .flight{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding:10px 40px;
+    height: 90px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.342);
+    background-color: white;
+  }
+  .flight-info{
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    border-right: 1px solid #ccc;
+    background-color: white;
+  }
+  .detail-info{
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.13);
+    background-color: white;
+  }
+  .sub-title{
+    font-size: 1em;
+    color: grey;
+    border-bottom: 1px solid rgb(148, 145, 145);
+    background-color: white;
+  }
