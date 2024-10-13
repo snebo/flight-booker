@@ -21,7 +21,7 @@ airports = Airport.all
   going = airports.sample.id
 
   # Ensure depart_from and arrive_at are different
-  while coming == going 
+  while coming == going
     going = airports.sample.id
   end
 
