@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2024_10_12_220451) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "airports", force: :cascade do |t|
     t.string "code"
     t.datetime "created_at", null: false
@@ -18,7 +21,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_12_220451) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "flight_id", null: false
+    t.bigint "flight_id", null: false
     t.integer "seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,7 +41,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_12_220451) do
   create_table "passangers", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.integer "booking_id", null: false
+    t.bigint "booking_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_passangers_on_booking_id"
