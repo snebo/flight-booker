@@ -8,10 +8,10 @@
     <%= csp_meta_tag %>
     <%= yield :head %>
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/paper_plane.png" type="image/png">
-    <!--<link rel="icon" href="/icon.svg" type="image/svg+xml">-->
+
+    <%= select_favicon(controller_name, action_name) %>
+
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= favicon_link_tag 'paper_plane.png', type: 'image/png' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag 'flights_booking', media: 'all', 'data-turbolinks-track': 'reload' %>
