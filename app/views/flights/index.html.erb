@@ -22,7 +22,7 @@
     </div>
     <div class="search-details">
       <div class="flight-detail">
-        <%= image_tag asset_path('from'), alt: 'from' %>
+        <%= image_tag "from.png", alt: 'from' %>
         <div class="sub-details">
           <%= form.label :depart_from, "Depart from:",class:"details-helper"%>
           <%= form.collection_select :depart_from, @airports, :id, :code, {prompt: "Travelling from?", selected:params[:depart_from]},
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="flight-detail">
-        <%= image_tag asset_path("to"), alt: 'destination', class:"detail-icon" %>
+        <%= image_tag "to.png", alt: 'destination', class:"detail-icon" %>
         <div class="sub-details">
           <%= form.label :arrive_at, "Arrive at:", class:"details-helper" %>
           <%= form.collection_select :arrive_at, @airports, :id, :code, {prompt: "Travelling to?", selected:params[:arrive_at]},
@@ -38,14 +38,14 @@
         </div>
       </div>
       <div class="flight-detail">
-        <%= image_tag asset_path('person'), alt: 'person', class:'detail-icon'%>
+        <%= image_tag "person.png", alt: 'person', class:'detail-icon'%>
         <div class="sub-details">
           <%= form.label :seats, "number of passangers:", class:"details-helper" %>
           <%= form.select :seats, options_for_select(1..4, selected:params[:seats]),{ prompt:"No of seats"}, {class:"custom-dropdown"} %>
         </div>
       </div>
       <div class="flight-detail">
-        <%= image_tag asset_path('date'), alt: 'date', class:"detail-icon" %>
+        <%= image_tag "date.png", alt: 'date', class:"detail-icon" %>
         <div class="sub-details">
           <%= form.label :start_date, "Traveling Date:", class:"details-helper"%>
           <%= form.select :start_date, options_for_select(@flight_dates, selected:params[:start_date]),{ prompt: "Select Flight Date"}, {class:"custom-dropdown"} %>
